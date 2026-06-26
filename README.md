@@ -56,7 +56,8 @@ During conversion, the script automatically parses external subtitle files, prio
 ---
 
 ## Dependencies
-* **MKVToolNix (mkvmerge):** Required for remuxing video streams, parsing internal track flags, and attaching external subtitle tracks to the MKV container.
+* **PowerShell:** Built with PowerShell 7.6.x.
+* **<a href="https://mkvtoolnix.download/" target="_blank" rel="noopener noreferrer">MKVToolNix (mkvmerge):</a>** Required for remuxing video streams, parsing internal track flags, and attaching external subtitle tracks to the MKV container.
 
 ## Support & Maintenance
 **This repository is provided "as-is" for archival purposes.** The author is not actively looking for feedback, feature requests, or bug reports. The issue tracker is disabled, and the author will not be responding to inquiries regarding setup or usage.
