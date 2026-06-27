@@ -12,7 +12,7 @@ The script logic supports two primary modes:
 2. **CONVERT Mode**: Performs the physical remuxing operations using `mkvmerge` to bundle video streams and external subtitle tracks into a clean MKV container.
 
 ### Subtitle Prioritization & Language Mapping
-During conversion, the script automatically parses external subtitle files, prioritizing format layouts by checking `.ass` and `.ssa` over `.srt` extensions. It dynamically matches track language codes and custom track names based on dot-separated file suffixes (e.g., `video.eng.full dialogue.srt`), stripping default flag configurations from internal streams to guarantee proper default mapping of the new external tracks.
+During conversion, the script automatically parses external subtitle files, prioritizing format layouts by checking `.ass` and `.ssa` over `.srt` extensions. It dynamically matches track language codes and custom track names based on dot-separated file suffixes (e.g., `video.eng.full dialogue.srt`), preserving original default flag configurations from internal streams while applying default status to compatible external tracks.
 
 ---
 
