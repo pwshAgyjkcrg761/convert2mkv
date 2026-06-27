@@ -1,6 +1,6 @@
 # ==============================================================================
 # SCRIPT: convert2mkv.ps1
-# VERSION: 2026.06.27__07.05.15
+# VERSION: 2026.06.27__10.51.10
 # TARGET: PowerShell 7.6.3 LTS
 #
 # Copyright (C) 2026 pwshAgyjkcrg761
@@ -69,7 +69,7 @@ param(
 )
 
 # --- GLOBAL VERSION DEFINITION ---
-$scriptVersion = "2026.06.27__07.05.15"
+$scriptVersion = "2026.06.27__10.51.10"
 
 # Force UTF-8 for international character support in terminal and pipelines
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
@@ -580,7 +580,7 @@ if ($Search) {
         $isMkvWithSubs = $false
         if ($MkvWithExternalSubtitles -and ($file.Extension -eq '.mkv')) {
             if ($DevDebug) { Write-Host "  [DevDebug-Search] Checking MKV: $($file.Name)" -ForegroundColor Gray }
-            $potentialSubs = Get-ChildItem -LiteralPath $file.DirectoryName -Filter ($file.BaseName + "*") | 
+            $potentialSubs = Get-ChildItem -LiteralPath $file.DirectoryName -Filter ($file.BaseName + ".*") | 
                 Where-Object { $subExtensions -contains $_.Extension }
             if ($potentialSubs) {
                 $isMkvWithSubs = $true
@@ -594,7 +594,7 @@ if ($Search) {
             Write-InlineProgress -Current $currentFileIndex -Total $files.Count -Message "Match Found: $($file.Name)"
             
             # Check for matching subtitle files
-            $foundSubs = Get-ChildItem -LiteralPath $file.DirectoryName -Filter ($file.BaseName + "*") | 
+            $foundSubs = Get-ChildItem -LiteralPath $file.DirectoryName -Filter ($file.BaseName + ".*") | 
                 Where-Object { $subExtensions -contains $_.Extension }
             
             foreach ($sub in $foundSubs) {
@@ -654,7 +654,7 @@ else {
         if ($videoExtensions -contains $_.Extension) { return $true }
         if ($MkvWithExternalSubtitles -and $_.Extension -eq '.mkv') {
             if ($DevDebug) { Write-Host " [DevDebug-Conversion] Checking MKV: $($_.Name)" -ForegroundColor Gray }
-            $potentialSubs = Get-ChildItem -LiteralPath $_.DirectoryName -Filter ($_.BaseName + "*") | 
+            $potentialSubs = Get-ChildItem -LiteralPath $_.DirectoryName -Filter ($_.BaseName + ".*") | 
                 Where-Object { $subExtensions -contains $_.Extension }
             if ($potentialSubs) {
                 if ($DevDebug) { Write-Host " [DevDebug-Conversion] [MATCH] External sub(s) found for: $($_.Name)" -ForegroundColor Magenta }
@@ -729,7 +729,7 @@ else {
             
             # Identify and prioritize subtitles based on extension order
             $priorityOrder = @('.ass', '.ssa', '.srt', '.sup', '.idx', '.sub')
-            $allSubs = Get-ChildItem -Path $file.DirectoryName -Filter ($file.BaseName + "*") | 
+            $allSubs = Get-ChildItem -Path $file.DirectoryName -Filter ($file.BaseName + ".*") | 
                 Where-Object { $priorityOrder -contains $_.Extension }
 
             # Filter out .sub files if a matching .idx file exists to avoid duplicate tracks
