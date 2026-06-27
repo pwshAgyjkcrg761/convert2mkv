@@ -1,6 +1,6 @@
 # ==============================================================================
 # SCRIPT: convert2mkv.ps1
-# VERSION: 2026.06.27__10.51.10
+# VERSION: 2026.06.27__12.16.51
 # TARGET: PowerShell 7.6.3 LTS
 #
 # Copyright (C) 2026 pwshAgyjkcrg761
@@ -69,7 +69,7 @@ param(
 )
 
 # --- GLOBAL VERSION DEFINITION ---
-$scriptVersion = "2026.06.27__10.51.10"
+$scriptVersion = "2026.06.27__12.16.51"
 
 # Force UTF-8 for international character support in terminal and pipelines
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
@@ -746,18 +746,19 @@ else {
             # Track if a default subtitle has already been assigned
             $defaultAssigned = $false
             
-            # Dynamically identify internal tracks to clear forced default flags
+            # Dynamically identify internal tracks and their properties
             $fileInfoJson = & $tools.merge -J $file.FullName | Out-String | ConvertFrom-Json
             
             # Initialize mkvmerge arguments with output file
             $args = @("-o", $outputFile)
             
-            # Loop through all detected internal tracks and clear their default flags
+            # Loop through detected internal tracks to preserve their original default status
             if ($fileInfoJson -and $fileInfoJson.tracks) {
                 foreach ($track in $fileInfoJson.tracks) {
                     if ($track.type -eq "audio" -or $track.type -eq "video" -or $track.type -eq "subtitles") {
+                        $status = if ($track.properties.default_track) { "yes" } else { "no" }
                         $args += "--default-track-flag"
-                        $args += "$($track.id):no"
+                        $args += "$($track.id):$status"
                     }
                 }
             }
