@@ -1,6 +1,6 @@
 # ==============================================================================
 # SCRIPT: convert2mkv.ps1
-# VERSION: 2026.06.24__14.38.00
+# VERSION: 2026.06.27__07.05.15
 # TARGET: PowerShell 7.6.3 LTS
 #
 # Copyright (C) 2026 pwshAgyjkcrg761
@@ -69,7 +69,7 @@ param(
 )
 
 # --- GLOBAL VERSION DEFINITION ---
-$scriptVersion = "2026.06.24__14.38.00"
+$scriptVersion = "2026.06.27__07.05.15"
 
 # Force UTF-8 for international character support in terminal and pipelines
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
@@ -191,6 +191,7 @@ function Show-ProjectManual {
      "  2. CONVERT: Performs the remuxing operation using mkvmerge.`n" | ForEach-Object { Write-Host $_ -ForegroundColor DarkMagenta }
     
     Write-Host " DEPENDENCIES:" -ForegroundColor DarkYellow
+    "  • PowerShell: Built with PowerShell 7.6.x.",
     "  • MKVToolNix (mkvmerge): Required for remuxing streams and attaching", 
     "    external subtitle tracks to the MKV container.`n" | ForEach-Object { Write-Host $_ -ForegroundColor DarkGray }
     
