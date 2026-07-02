@@ -77,7 +77,7 @@ param(
 )
 
 # --- GLOBAL VERSION DEFINITION ---
-$scriptVersion = "2026.06.27__12.16.51"
+$scriptVersion = "2026.07.02__14.27.13"
 
 # Force UTF-8 for international character support in terminal and pipelines
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
