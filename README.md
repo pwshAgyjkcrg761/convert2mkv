@@ -66,4 +66,6 @@ During conversion, the script automatically parses external subtitle files, prio
 *This script executes conversion and container operations using external tools. While designed for structural safety, always ensure you have backups of your media before running batch operations across your storage volumes.*
 
 ---
-> **Document Control** > *This document is up-to-date with the following version of convert2mkv.* > *2026.06.24__08.51.52*
+> **Document Control** <br>
+> *This document is up-to-date with the following version of convert2mkv.* <br>
+> *2026.07.02__14.27.13*
